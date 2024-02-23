@@ -460,7 +460,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	TIM2->CCR2 = 	pwm;
+	TIM2->CCR2 = pwm;
  800056c:	4b0a      	ldr	r3, [pc, #40]	; (8000598 <main+0x70>)
  800056e:	681a      	ldr	r2, [r3, #0]
  8000570:	f04f 4380 	mov.w	r3, #1073741824	; 0x40000000
@@ -478,7 +478,7 @@ int main(void)
  800058c:	3364      	adds	r3, #100	; 0x64
  800058e:	4a02      	ldr	r2, [pc, #8]	; (8000598 <main+0x70>)
  8000590:	6013      	str	r3, [r2, #0]
-	TIM2->CCR2 = 	pwm;
+	TIM2->CCR2 = pwm;
  8000592:	e7eb      	b.n	800056c <main+0x44>
  8000594:	2000002c 	.word	0x2000002c
  8000598:	20000028 	.word	0x20000028
