@@ -55,7 +55,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int pwm = 400;
+int pwm = 50;
 
 /* USER CODE END 0 */
 
@@ -105,8 +105,8 @@ int main(void)
   while (1)
   {
 	  TIM2->CCR2 = pwm;
-	  HAL_Delay(100);
-	  if (pwm < 500){pwm+=10;}
+	  HAL_Delay(200);
+	  if (pwm <= 1000){pwm+=10;}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
