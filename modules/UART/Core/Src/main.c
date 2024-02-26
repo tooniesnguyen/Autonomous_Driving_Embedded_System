@@ -65,6 +65,12 @@ uint8_t RxBuf[RxBuf_SIZE];
 uint8_t MainBuf[MainBuf_SIZE];
 
 
+
+uint8_t data[2000] = "Hello worlds 2 \n";
+
+
+
+
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 
@@ -72,7 +78,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 	{
 		memcpy(MainBuf, RxBuf, Size);
 		HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *) RxBuf, RxBuf_SIZE);
-		__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+//		__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
 
 
 	}
@@ -120,8 +126,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
+
+	  HAL_Delay (500);
+	  HAL_UART_Transmit(&huart2, data, 50, 1000);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
