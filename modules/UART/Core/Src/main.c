@@ -91,7 +91,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	 HAL_UART_Transmit(&huart2, data, 50, 1000);
+	HAL_UART_Transmit_IT(&huart2, data, 50);
 }
 /* USER CODE END 0 */
 

@@ -1462,18 +1462,18 @@ bno055_vector_t bno055_getVector(uint8_t vec) {
  8001070:	20000004 	.word	0x20000004
  8001074:	20000008 	.word	0x20000008
 
-08001078 <bno055_getVectorQuaternion>:
-  return bno055_getVector(BNO055_VECTOR_LINEARACCEL);
+08001078 <bno055_getVectorEuler>:
+  return bno055_getVector(BNO055_VECTOR_MAGNETOMETER);
 }
-bno055_vector_t bno055_getVectorGravity() {
-  return bno055_getVector(BNO055_VECTOR_GRAVITY);
+bno055_vector_t bno055_getVectorGyroscope() {
+  return bno055_getVector(BNO055_VECTOR_GYROSCOPE);
 }
-bno055_vector_t bno055_getVectorQuaternion() {
+bno055_vector_t bno055_getVectorEuler() {
  8001078:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
  800107c:	b090      	sub	sp, #64	; 0x40
  800107e:	af00      	add	r7, sp, #0
-  return bno055_getVector(BNO055_VECTOR_QUATERNION);
- 8001080:	2020      	movs	r0, #32
+  return bno055_getVector(BNO055_VECTOR_EULER);
+ 8001080:	201a      	movs	r0, #26
  8001082:	f7ff feb5 	bl	8000df0 <bno055_getVector>
  8001086:	eeb0 4a40 	vmov.f32	s8, s0
  800108a:	eef0 4a60 	vmov.f32	s9, s1
@@ -2097,8 +2097,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  v = bno055_getVectorQuaternion();
- 8001496:	f7ff fdef 	bl	8001078 <bno055_getVectorQuaternion>
+	  v = bno055_getVectorEuler();
+ 8001496:	f7ff fdef 	bl	8001078 <bno055_getVectorEuler>
  800149a:	eeb0 4a40 	vmov.f32	s8, s0
  800149e:	eef0 4a60 	vmov.f32	s9, s1
  80014a2:	eeb0 5a41 	vmov.f32	s10, s2
@@ -2115,7 +2115,7 @@ int main(void)
 	  HAL_Delay(1000);
  80014cc:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80014d0:	f000 fa10 	bl	80018f4 <HAL_Delay>
-	  v = bno055_getVectorQuaternion();
+	  v = bno055_getVectorEuler();
  80014d4:	e7df      	b.n	8001496 <main+0x22>
  80014d6:	bf00      	nop
  80014d8:	2000009c 	.word	0x2000009c

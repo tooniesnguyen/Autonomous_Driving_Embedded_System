@@ -170,11 +170,11 @@ Discarded input sections
                 0x0000000000000000       0x86 ./Core/Src/bno055.o
  .text.bno055_getVectorGyroscope
                 0x0000000000000000       0x86 ./Core/Src/bno055.o
- .text.bno055_getVectorEuler
-                0x0000000000000000       0x86 ./Core/Src/bno055.o
  .text.bno055_getVectorLinearAccel
                 0x0000000000000000       0x86 ./Core/Src/bno055.o
  .text.bno055_getVectorGravity
+                0x0000000000000000       0x86 ./Core/Src/bno055.o
+ .text.bno055_getVectorQuaternion
                 0x0000000000000000       0x86 ./Core/Src/bno055.o
  .text.bno055_setAxisMap
                 0x0000000000000000       0x5c ./Core/Src/bno055.o
@@ -3146,9 +3146,9 @@ LOAD d:/micro/stm32ide/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .text.bno055_getVector
                 0x0000000008000df0      0x288 ./Core/Src/bno055.o
                 0x0000000008000df0                bno055_getVector
- .text.bno055_getVectorQuaternion
+ .text.bno055_getVectorEuler
                 0x0000000008001078       0x86 ./Core/Src/bno055.o
-                0x0000000008001078                bno055_getVectorQuaternion
+                0x0000000008001078                bno055_getVectorEuler
  *fill*         0x00000000080010fe        0x2 
  .text.MX_GPIO_Init
                 0x0000000008001100       0x34 ./Core/Src/gpio.o
@@ -4034,7 +4034,7 @@ LOAD d:/micro/stm32ide/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube
  .debug_str     0x0000000000083a43      0x5b9 ./Core/Src/i2c.o
                                       0x7f0a6 (size before relaxing)
  .debug_str     0x0000000000083ffc      0x224 ./Core/Src/main.o
-                                      0x83d72 (size before relaxing)
+                                      0x83d6d (size before relaxing)
  .debug_str     0x0000000000084220       0x2c ./Core/Src/stm32f4xx_hal_msp.o
                                       0x7eaa7 (size before relaxing)
  .debug_str     0x000000000008424c       0xc9 ./Core/Src/stm32f4xx_it.o

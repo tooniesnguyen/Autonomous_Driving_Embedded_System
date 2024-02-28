@@ -96,7 +96,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  v = bno055_getVectorQuaternion();
+	  v = bno055_getVectorEuler();
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
