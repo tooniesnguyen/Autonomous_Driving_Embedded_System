@@ -17,7 +17,8 @@
 - [BNO055](./HARDWARE/BNO055/README.md)
 - [Servo](./HARDWARE/SERVO/README.md)
 - [UART and Timer](./SOFTWARE/UART/README.md)
-
+  
+## [Module test folder](./modules/)
 
 ## Connections Diagram
 
