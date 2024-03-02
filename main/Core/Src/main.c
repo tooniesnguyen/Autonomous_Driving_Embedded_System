@@ -24,6 +24,7 @@
 #include "string.h"
 #include "bno055_stm32.h"
 #include "log.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,10 +77,15 @@ uint8_t RxBuf[RxBuf_SIZE];
 uint8_t MainBuf[MainBuf_SIZE];
 
 
+char uart2_ds[20] = {0};
+uint8_t data[20];
+int pwm,servo;
 
 
-
-
+void Receive(){
+	sscanf((char *)data, "%d,%d", &pwm, &servo);
+	memset(data,0,20);
+}
 
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
@@ -87,9 +93,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 
 	if (huart->Instance == USART2)
 	{
-		memcpy(MainBuf, RxBuf, Size);
-		HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *) RxBuf, RxBuf_SIZE);
-//		__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+		HAL_UARTEx_ReceiveToIdle_DMA(&huart2,data, 20);
+		Receive();
+		__HAL_DMA_DISABLE_IT(&hdma_usart2_rx,DMA_IT_HT);
 	}
 
 
