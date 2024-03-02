@@ -31,3 +31,4 @@ STM32CubeMX version: 6.8.1
 
 ## References
 - https://www.youtube.com/@ControllersTech
+- https://khuenguyencreator.com/
