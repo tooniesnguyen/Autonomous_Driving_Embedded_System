@@ -1,0 +1,6 @@
+../Core/Src/log.c:13:26:checkNull	4	static
+../Core/Src/log.c:18:6:log_Init	16	static
+../Core/Src/log.c:23:6:log_TransmitCompleteHandle	16	static
+../Core/Src/log.c:29:6:log_SendString	16	static
+../Core/Src/log.c:36:6:log_AddHeaderArgumentToBuffer	32	static
+../Core/Src/log.c:42:6:log_AddArgumentToBuffer_float	24	static

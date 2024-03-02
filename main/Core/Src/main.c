@@ -23,7 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "string.h"
 #include "bno055_stm32.h"
-
+#include "log.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +48,7 @@ TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart2_rx;
+DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -103,6 +104,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // Assign values to the elements of the data array
 
 }
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
+	log_TransmitCompleteHandle(huart);
+}
+
+//char txLogBuffer[100] = {0};
+//UART_HandleTypeDef *targetUART;
 /* USER CODE END 0 */
 
 /**
@@ -145,6 +153,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim4);
   HAL_UARTEx_ReceiveToIdle_DMA(&huart2, RxBuf, RxBuf_SIZE);
   __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+  log_Init(&huart2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -155,11 +164,20 @@ int main(void)
 
 
 
-	  v = bno055_getVectorEuler();
+	v = bno055_getVectorEuler();
+
+
 	data[0] = (uint8_t)v.x;
 	data[1] = (uint8_t)v.y;
 	data[2] = (uint8_t)v.z;
+
+	log_AddArgumentToBuffer_float((float)v.x);
+	log_AddArgumentToBuffer_float((float)v.y);
+	log_AddArgumentToBuffer_float((float)v.z);
+	log_SendString();
+
 	HAL_UART_Transmit(&huart2, data, 50, 1000);
+	HAL_Delay(150);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -338,6 +356,9 @@ static void MX_DMA_Init(void)
   /* DMA1_Stream5_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+  /* DMA1_Stream6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
 }
 
