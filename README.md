@@ -1,7 +1,6 @@
 # Autonomous Driving Embedded System
 
-![image](./images/Car.png){:width="70%"}
-
+<br><img src="./images/Car.pngf" width="80px" height="80px"></br> 
 ## Connections Diagram
 
 ![image](./images/ConnectionDiagram.png)
