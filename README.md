@@ -4,6 +4,10 @@
 ## Connections Diagram
 
 ![image](./images/ConnectionDiagram.png)
+```
+STM32CubeIDE version: 1.11.0
+STM32CubeMX version: 6.8.1
+```
 
 ## The Components
 - Chassis: [Reely TC-04](https://www.conrad.com/en/p/reely-tc-04-onroad-chassis-1-10-rc-model-car-electric-road-version-4wd-arr-1406735.html?refresh=true)
@@ -17,3 +21,13 @@
 - [Power board](./images/powerboard.png)
 - Charger: [VOLTCRAFT V-Charge Eco LiPo 3000](https://www.conrad.com/en/p/voltcraft-v-charge-eco-lipo-3000-scale-model-battery-charger-230-v-3-a-lipolymer-1409525.html)
 - Car Body: [Link 1](https://www.eurorc.com/product/21265/killerbody-lexus-rc-finished-body-orange-190mm), [Link 2](https://hpi-racing.ro/acasa/caroserie-vopsita-ford-mustang-mach-e-1400-200mm.html), [Link 3](https://hpi-racing.ro/onroadtouringdrift/caroserie-hpi-3d-bmw-m3-gt2-e92200mm.html)
+
+## Tutorial
+- [ESC Brushless Motor](./HARDWARE/ESC/README.md)
+- [BNO055]()
+- [Servo]()
+- [UART]()
+- [Timer]()
+
+## References
+- https://www.youtube.com/@ControllersTech
