@@ -8,10 +8,10 @@
   - `Clock Configuration`
 <br><img src="..\images\clock_config.png" width="80%" height="80%"> </br> 
 
-- Timer Config: `Pinout & Configuration` -> `Timers` -> `TIM2`
+- Timer Config: `Pinout & Configuration` -> `Timers` -> `TIM3`
   - `Channel2: PWM Generation CH2`
-  - `Parameter Settings` -> `Prescaler: 180-1`, `Counter Period: 1000-1`
-<br><img src="..\images\esc_clock.png" width="80%" height="80%"> </br> 
+  - `Parameter Settings` -> `Prescaler: 1680-1`, `Counter Period: 1000-1`
+<br><img src="..\images\servo_config.png" width="80%" height="80%"> </br> 
 
 - Code Generate: `Project Manager`  
   - `Project Name: {name_folder}`
@@ -21,19 +21,16 @@
 
 ### Step 2: Code on CubeIDE
 - Open `main.c` and add
+
 ```
-
 ...
-
 /* USER CODE BEGIN 0 */
-int pwm = 400;
-
+int pwm = 24;
 /* USER CODE END 0 */
-
 ...
 
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
 ...
@@ -41,16 +38,16 @@ int pwm = 400;
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  TIM2->CCR2 = pwm;
-	  HAL_Delay(100);
-	  if (pwm < 500){pwm+=10;}
+    // The pwm range (18 24 29) <=> (-25 0 25) degree
+	  htim3.Instance->CCR2 = pwm;
     /* USER CODE END WHILE */
 ...
 
 ```
+
 - Complie and Run code:
 <br><img src="..\images\compile.png" width="100%" height="100%"> </br> 
 
-  
+
 ### References
-- https://controllerstech.com/how-to-interface-bldc-motor-with-stm32/
+- https://controllerstech.com/servo-motor-with-stm32/

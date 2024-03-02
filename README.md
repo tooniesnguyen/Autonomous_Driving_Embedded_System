@@ -1,6 +1,24 @@
 # Autonomous Driving Embedded System
 
-<br><img src="./images/Car.png" width="70%" height="50%"> </br>  
+<br><img src="./images/Car.png" width="70%" height="50%"> </br>
+
+## To do task
+- [x] Control ESC with PWM
+- [X] Interrupt with timer to read IMU value
+- [x] Read IMU and send via UART
+- [X] Control Servo with PWM
+- [X] Control Servo and Motor via UART
+ 
+
+
+
+## Tutorial
+- [ESC Brushless Motor](./HARDWARE/ESC/README.md)
+- [BNO055](./HARDWARE/BNO055/README.md)
+- [Servo](./HARDWARE/SERVO/README.md)
+- [UART and Timer](./SOFTWARE/UART/README.md)
+
+
 ## Connections Diagram
 
 ![image](./images/ConnectionDiagram.png)
@@ -22,12 +40,8 @@ STM32CubeMX version: 6.8.1
 - Charger: [VOLTCRAFT V-Charge Eco LiPo 3000](https://www.conrad.com/en/p/voltcraft-v-charge-eco-lipo-3000-scale-model-battery-charger-230-v-3-a-lipolymer-1409525.html)
 - Car Body: [Link 1](https://www.eurorc.com/product/21265/killerbody-lexus-rc-finished-body-orange-190mm), [Link 2](https://hpi-racing.ro/acasa/caroserie-vopsita-ford-mustang-mach-e-1400-200mm.html), [Link 3](https://hpi-racing.ro/onroadtouringdrift/caroserie-hpi-3d-bmw-m3-gt2-e92200mm.html)
 
-## Tutorial
-- [ESC Brushless Motor](./HARDWARE/ESC/README.md)
-- [BNO055]()
-- [Servo]()
-- [UART]()
-- [Timer]()
+
+
 
 ## References
 - https://www.youtube.com/@ControllersTech
