@@ -68,6 +68,7 @@ void Error_Handler(void);
 #define FUNC_Button_EXTI_IRQn EXTI15_10_IRQn
 #define STOP_Button_Pin GPIO_PIN_8
 #define STOP_Button_GPIO_Port GPIOA
+#define STOP_Button_EXTI_IRQn EXTI9_5_IRQn
 #define SERVO_Pin GPIO_PIN_3
 #define SERVO_GPIO_Port GPIOB
 #define START_Button_Pin GPIO_PIN_4

@@ -61,6 +61,7 @@ uint8_t rxdata[4] = {0, 0, 0, 0};
 int16_t receive_speed;
 int8_t receive_angle;
 uint8_t flag_button=0;
+extern DMA_HandleTypeDef hdma_usart2_rx;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -182,6 +183,78 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+uint16_t i = 100;
+
+/*********************************************************/
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim->Instance == TIM1) {
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+		/************* SETUP ESC *************/
+//		TIM3->CCR2 = i;
+//		// Tang
+//		if (i<=105) i+=1;
+			// Giam
+//		if (i>=100) i-=1;
+		/*************************************/
+
+		/************* Control *************/
+//		Run(&Esc, &Servo, -10, 0);
+		if (flag_button == 0) Run(&Esc, &Servo, 0, 0); // Speed, Angle
+		else Run(&Esc, &Servo, receive_speed, receive_angle);  // Run(&Esc, &Servo, -10, 0); // Speed, Angle
+		}
+}
+
+/*********************************************************/
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+  if (huart->Instance == USART2) {
+	  while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
+    __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+		if (Size == 4) {
+			if (rxdata[3] == 25) {
+				receive_speed = ((int16_t)rxdata[1]<<8)|rxdata[0];
+				receive_angle = rxdata[2];
+			}
+			else {
+				receive_speed = 0;
+				receive_angle = 0;
+			}
+
+			/**** CHECK DATA ****/
+//			if (receive_speed == 100 && receive_angle == 0) HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//			else HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+		}
+  }
+}
+
+/*********************************************************/
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
+  if (huart->Instance == USART2) {
+		while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
+    __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+	}
+}
+
+/************************SETUP ESC************************/
+uint16_t setup_pwm;
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == STOP_Button_Pin) {
+		flag_button=0;
+//		setup_pwm = 65; //65 (100Hz) - 35 (50Hz)
+//		TIM3->CCR2 = setup_pwm;
+	}
+	else if (GPIO_Pin == FUNC_Button_Pin) {
+		flag_button=1;
+//		setup_pwm = 100; // 150 (100Hz) - 75 (50Hz)
+//		TIM3->CCR2 = setup_pwm;
+	}
+	else if (GPIO_Pin == START_Button_Pin) {
+		flag_button=2;
+//		setup_pwm = 235; // 235 (100Hz) - 115 (50Hz)
+//		TIM3->CCR2 = setup_pwm;
+	}
+}
 
 /* USER CODE END 4 */
 
