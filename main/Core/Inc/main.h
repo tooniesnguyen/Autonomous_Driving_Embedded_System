@@ -65,12 +65,14 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOA
 #define FUNC_Button_Pin GPIO_PIN_10
 #define FUNC_Button_GPIO_Port GPIOB
+#define FUNC_Button_EXTI_IRQn EXTI15_10_IRQn
 #define STOP_Button_Pin GPIO_PIN_8
 #define STOP_Button_GPIO_Port GPIOA
 #define SERVO_Pin GPIO_PIN_3
 #define SERVO_GPIO_Port GPIOB
 #define START_Button_Pin GPIO_PIN_4
 #define START_Button_GPIO_Port GPIOB
+#define START_Button_EXTI_IRQn EXTI4_IRQn
 #define Motor_Pin GPIO_PIN_5
 #define Motor_GPIO_Port GPIOB
 

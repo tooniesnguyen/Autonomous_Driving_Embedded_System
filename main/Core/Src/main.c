@@ -50,13 +50,17 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+esc Esc;
+servo Servo;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t rxdata[4] = {0, 0, 0, 0};
+int16_t receive_speed;
+int8_t receive_angle;
+uint8_t flag_button=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -104,13 +108,27 @@ int main(void)
   MX_TIM3_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+	/************** ESC **************/
+	ESC_Init(&Esc, 100, -10, 25);
+//	TIM3->CCR2 = 100;
 
+	/************** SERVO **************/
+	SERVO_Init(&Servo, 75, -25, 25);
+//	TIM2->CCR2 = 90;
+
+	/************** TIMER **************/
+	HAL_TIM_Base_Start_IT(&htim1);
+
+	/************** COMMUNICATION **************/
+	while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
+	__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
