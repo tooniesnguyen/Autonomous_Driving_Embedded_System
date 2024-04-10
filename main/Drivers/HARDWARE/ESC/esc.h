@@ -6,6 +6,7 @@ extern "C" {
 #endif
 /***************/
 #include "main.h"
+#include "tim.h"
 #include "stdlib.h"     /* abs */
 
 	/*****************/
@@ -18,7 +19,6 @@ extern "C" {
 
 /*****************/
 typedef struct {
-
 	int16_t Max, Min;
 	float Set;
 	float Output;

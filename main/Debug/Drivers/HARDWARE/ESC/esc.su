@@ -1,0 +1,4 @@
+../Drivers/HARDWARE/ESC/esc.c:7:6:ESC_Init	24	static
+../Drivers/HARDWARE/ESC/esc.c:19:6:Acceleration	32	static
+../Drivers/HARDWARE/ESC/esc.c:33:7:ESC_Caliration	24	static
+../Drivers/HARDWARE/ESC/esc.c:42:6:ESC_Run	24	static

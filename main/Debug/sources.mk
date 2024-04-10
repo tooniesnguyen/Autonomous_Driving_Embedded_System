@@ -24,5 +24,8 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/HARDWARE/ESC \
+Drivers/HARDWARE/SERVO \
+Drivers/SOFTWARE/CONTROLLER \
+Drivers/SOFTWARE/FUNCTIONS \
 Drivers/STM32F4xx_HAL_Driver/Src \
 

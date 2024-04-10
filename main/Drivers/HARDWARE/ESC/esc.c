@@ -1,14 +1,10 @@
 #include "esc.h"
-#include "main.h"
 
 /*******************************/
 double T=0.1;
 
 /*******************************/
-extern htim3;
-
 void ESC_Init(esc *Esc, uint16_t home, int16_t OutMin, int16_t OutMax) {
-
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 
 	Esc->Min = OutMin;
@@ -28,7 +24,7 @@ void Acceleration(float V_want, float *vout, float _acc, float _dcc) {
   if(fabs(*vout) > fabs(V_want)) {
      *vout -= _dcc*T;
 		if (_dcc >= 0) {
-			if(*vout <= V_want) *voutS = V_want;
+			if(*vout <= V_want) *vout = V_want;
 		}
 		else if(*vout >= V_want) *vout = V_want;
   }
