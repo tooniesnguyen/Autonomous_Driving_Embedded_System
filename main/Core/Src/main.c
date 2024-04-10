@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+/******* HARDWARE *******/
+#include "ESC/esc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
