@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Drivers/SOFTWARE/LOG/log.o: ../Drivers/SOFTWARE/LOG/log.c \
+ ../Drivers/SOFTWARE/LOG/log.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -28,13 +29,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/dma.h ../Core/Inc/main.h ../Core/Inc/i2c.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Drivers/HARDWARE/ESC/esc.h \
- ../Drivers/HARDWARE/SERVO/servo.h ../Drivers/HARDWARE/IMU/bno055_stm32.h \
- ../Drivers/HARDWARE/IMU/bno055.h ../Drivers/SOFTWARE/CONTROLLER/ute_ai.h \
- ../Drivers/SOFTWARE/FUNCTIONS/math_functions.h \
- ../Drivers/SOFTWARE/LOG/log.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+../Drivers/SOFTWARE/LOG/log.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -66,16 +62,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-../Core/Inc/dma.h:
-../Core/Inc/main.h:
-../Core/Inc/i2c.h:
-../Core/Inc/tim.h:
-../Core/Inc/usart.h:
-../Core/Inc/gpio.h:
-../Drivers/HARDWARE/ESC/esc.h:
-../Drivers/HARDWARE/SERVO/servo.h:
-../Drivers/HARDWARE/IMU/bno055_stm32.h:
-../Drivers/HARDWARE/IMU/bno055.h:
-../Drivers/SOFTWARE/CONTROLLER/ute_ai.h:
-../Drivers/SOFTWARE/FUNCTIONS/math_functions.h:
-../Drivers/SOFTWARE/LOG/log.h:

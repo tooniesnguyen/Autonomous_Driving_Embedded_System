@@ -28,5 +28,6 @@ Drivers/HARDWARE/IMU \
 Drivers/HARDWARE/SERVO \
 Drivers/SOFTWARE/CONTROLLER \
 Drivers/SOFTWARE/FUNCTIONS \
+Drivers/SOFTWARE/LOG \
 Drivers/STM32F4xx_HAL_Driver/Src \
 

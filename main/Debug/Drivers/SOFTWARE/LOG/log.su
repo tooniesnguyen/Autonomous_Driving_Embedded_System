@@ -1,0 +1,6 @@
+../Drivers/SOFTWARE/LOG/log.c:6:26:checkNull	4	static
+../Drivers/SOFTWARE/LOG/log.c:11:6:log_Init	16	static
+../Drivers/SOFTWARE/LOG/log.c:16:6:log_TransmitCompleteHandle	16	static
+../Drivers/SOFTWARE/LOG/log.c:22:6:log_SendString	16	static
+../Drivers/SOFTWARE/LOG/log.c:29:6:log_AddHeaderArgumentToBuffer	32	static
+../Drivers/SOFTWARE/LOG/log.c:35:6:log_AddArgumentToBuffer_float	24	static

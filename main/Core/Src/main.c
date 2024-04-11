@@ -28,7 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "stdbool.h"
-
+#include "string.h"
 /******* HARDWARE *******/
 #include "ESC/esc.h"
 #include "SERVO/servo.h"
@@ -37,7 +37,7 @@
 /******* SOFTWARE *******/
 #include "CONTROLLER/ute_ai.h"
 #include "FUNCTIONS/math_functions.h"
-
+#include "LOG/log.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,6 +60,7 @@ servo Servo;
 
 /* USER CODE BEGIN PV */
 uint8_t rxdata[4] = {0, 0, 0, 0};
+uint8_t data[50];
 int16_t receive_speed;
 int8_t receive_angle;
 uint8_t flag_button=0;
@@ -132,6 +133,7 @@ int main(void)
 	/************** COMMUNICATION **************/
 	while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
 	__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+	log_Init(&huart2);
 
   /* USER CODE END 2 */
 
@@ -139,7 +141,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	    v = bno055_getVectorQuaternion();
+
 	    HAL_Delay(100);
     /* USER CODE END WHILE */
 
@@ -194,12 +196,29 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
+	log_TransmitCompleteHandle(huart);
+}
+
+
 uint16_t i = 100;
 
 /*********************************************************/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   if (htim->Instance == TIM1) {
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+		/************ UART Transmit ***********/
+		v = bno055_getVectorEuler();
+		data[0] = (uint8_t)v.x;
+		data[1] = (uint8_t)v.y;
+		data[2] = (uint8_t)v.z;
+		log_AddArgumentToBuffer_float((float)v.x);
+		log_AddArgumentToBuffer_float((float)v.y);
+		log_AddArgumentToBuffer_float((float)v.z);
+		log_SendString();
+
+		HAL_UART_Transmit(&huart2, data, 50, 1000);
 
 		/************* SETUP ESC *************/
 //		TIM3->CCR2 = i;
