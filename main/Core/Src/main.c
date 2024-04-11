@@ -60,7 +60,7 @@ servo Servo;
 
 /* USER CODE BEGIN PV */
 uint8_t rxdata[4] = {0, 0, 0, 0};
-uint8_t data[50];
+uint8_t data[20];
 int16_t receive_speed;
 int8_t receive_angle;
 uint8_t flag_button=0;
