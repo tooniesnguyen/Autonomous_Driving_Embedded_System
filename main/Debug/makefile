@@ -13,6 +13,7 @@ RM := rm -rf
 -include Drivers/SOFTWARE/FUNCTIONS/subdir.mk
 -include Drivers/SOFTWARE/CONTROLLER/subdir.mk
 -include Drivers/HARDWARE/SERVO/subdir.mk
+-include Drivers/HARDWARE/IMU/subdir.mk
 -include Drivers/HARDWARE/ESC/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk

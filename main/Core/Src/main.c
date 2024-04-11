@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -31,6 +32,7 @@
 /******* HARDWARE *******/
 #include "ESC/esc.h"
 #include "SERVO/servo.h"
+#include "IMU/bno055_stm32.h"
 
 /******* SOFTWARE *******/
 #include "CONTROLLER/ute_ai.h"
@@ -62,6 +64,7 @@ int16_t receive_speed;
 int8_t receive_angle;
 uint8_t flag_button=0;
 extern DMA_HandleTypeDef hdma_usart2_rx;
+bno055_vector_t v;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -108,8 +111,9 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART2_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-	/************** ESC **************/
+	/*************** ESC ***************/
 	ESC_Init(&Esc, 100, -10, 25);
 //	TIM3->CCR2 = 100;
 
@@ -117,19 +121,26 @@ int main(void)
 	SERVO_Init(&Servo, 75, -25, 25);
 //	TIM2->CCR2 = 90;
 
+	/*************** IMU ***************/
+	  bno055_assignI2C(&hi2c1);
+	  bno055_setup();
+	  bno055_setOperationModeNDOF();
+
 	/************** TIMER **************/
 	HAL_TIM_Base_Start_IT(&htim1);
 
 	/************** COMMUNICATION **************/
 	while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
 	__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_Delay(10);
+	    v = bno055_getVectorQuaternion();
+	    HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

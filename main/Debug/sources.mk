@@ -24,6 +24,7 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/HARDWARE/ESC \
+Drivers/HARDWARE/IMU \
 Drivers/HARDWARE/SERVO \
 Drivers/SOFTWARE/CONTROLLER \
 Drivers/SOFTWARE/FUNCTIONS \

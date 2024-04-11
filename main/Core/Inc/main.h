@@ -76,6 +76,10 @@ void Error_Handler(void);
 #define START_Button_EXTI_IRQn EXTI4_IRQn
 #define Motor_Pin GPIO_PIN_5
 #define Motor_GPIO_Port GPIOB
+#define IMU_SCL_Pin GPIO_PIN_8
+#define IMU_SCL_GPIO_Port GPIOB
+#define IMU_SDA_Pin GPIO_PIN_9
+#define IMU_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
