@@ -38,6 +38,7 @@
 #include "CONTROLLER/ute_ai.h"
 #include "FUNCTIONS/math_functions.h"
 #include "LOG/log.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
